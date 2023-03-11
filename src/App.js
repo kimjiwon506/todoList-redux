@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import TodoContainer from './components/Container/TodoContainer';
+import { TodoContainer } from './container/TodoContainer';
 
 function App() {
   return (

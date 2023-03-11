@@ -1,9 +1,9 @@
 import React from 'react';
 import * as Styled from './styled'
 
-function Button({children}) {
+function Button({ onClick, children }) {
     return (
-        <Styled._Button>
+        <Styled._Button onClick={onClick} type="submit">
             {children}
         </Styled._Button>
     );

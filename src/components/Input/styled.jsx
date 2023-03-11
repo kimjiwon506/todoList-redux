@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const _Wrapper = styled.div`
+export const _Wrapper = styled.form`
     display: flex;
     width: 375px;
     margin: 0 auto;
