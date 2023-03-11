@@ -5,20 +5,14 @@ const TOGGLE = 'todos/TOGGLE'; // todo 를 체크/체크해제 함
 const REMOVE = 'todos/REMOVE'; // todo 를 제거함
 
 // 초기값 
-const initialState = [
-    /* 우리는 다음과 같이 구성된 객체를 이 배열 안에 넣을 것입니다.
-    {
-      id: 1,
-      text: '예시',
-      done: false
-    } 
-    */
-    {
+const initialState = {
+    input: '',  
+    todos: [{
         id: 1,
-        text: '예시',
-        done: true
-      } 
-  ];
+        text: '리덕스',
+        done: false
+    }]
+};
 
 // 액션 생성함수
 export const changeInput = input => ({
@@ -32,7 +26,8 @@ export const addTodo = text => ({
     type: ADD_TODO,
     todo: {
         id: nextId++, // 새 항목을 추가하고 nextId 값에 1을 더해줍니다.
-        text
+        text,
+        done:true
     }
 })
 
@@ -44,23 +39,17 @@ export const toggleTodo = id => ({
 // export default function todos(state = INITIALSTATE, action){
 //     return {...state} > 초기값 아무것도 없을때 
 // }
-
+// 리듀서
 export default function todos(state = initialState, action){
     switch(action.type){
         case CHANGE_INPUT : 
         return {
             ...state,
-            text: action.text
+            input : action.input
         }
         case ADD_TODO :
-        // return {
-        //     // 기존 state를 변경하지 않기위해 전개연산자 or object.assign()사용하여 복사본생성
-        //     ...state,
-        //     // state.todos.concat 액션타입에 있는 todo
-        //     // todos : state.todos.concat(action.todo)
-        //     state.concat(action.todo);
-        //     }
-        return state.concat(action.todo);
+        return state.todos.concat(action.todo);
+        // return console.log(action.todo);
         
         case TOGGLE : 
         return {
