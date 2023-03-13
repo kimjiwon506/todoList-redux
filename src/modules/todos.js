@@ -48,7 +48,10 @@ export default function todos(state = initialState, action){
             input : action.input
         }
         case ADD_TODO :
-        return state.todos.concat(action.todo);
+        return {
+            ...state, 
+            todos: state.todos.concat(action.todo)
+        }
         // return console.log(action.todo);
         
         case TOGGLE : 
