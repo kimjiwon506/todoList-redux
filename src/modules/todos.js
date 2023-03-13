@@ -5,7 +5,7 @@ const TOGGLE = 'todos/TOGGLE'; // todo 를 체크/체크해제 함
 const DELETE = 'todos/DELETE'; // todo 를 제거함
 
 // 초기값 
-const initialState = {
+const INITIALSTATE = {
     input: '',  
     todos: [{
         id: 1,
@@ -46,7 +46,7 @@ export const deleteTodo = id => ({
 // }
 
 // 리듀서
-export default function todos(state = initialState, action){
+export default function todos(state = INITIALSTATE, action){
     switch(action.type){
         case CHANGE_INPUT : 
         return {

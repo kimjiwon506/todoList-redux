@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect, useSelector, useDispatch } from 'react-redux';
 import Header from '../components/Header/index';
 import Input from '../components/Input/index';
