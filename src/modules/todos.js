@@ -2,7 +2,7 @@
 const CHANGE_INPUT = 'todos/CHANGE_INPUT'; // 인풋 값을 변경함
 const ADD_TODO = 'todos/ADD_TODO'; // 새로운 todo 를 등록함
 const TOGGLE = 'todos/TOGGLE'; // todo 를 체크/체크해제 함
-const REMOVE = 'todos/REMOVE'; // todo 를 제거함
+const DELETE = 'todos/DELETE'; // todo 를 제거함
 
 // 초기값 
 const initialState = {
@@ -25,9 +25,9 @@ let nextId = 2;
 export const addTodo = text => ({
     type: ADD_TODO,
     todo: {
-        id: nextId++, // 새 항목을 추가하고 nextId 값에 1을 더해줍니다.
+        id: nextId++,
         text,
-        done:true
+        done: false
     }
 })
 
@@ -36,9 +36,15 @@ export const toggleTodo = id => ({
     id
 });
 
+export const deleteTodo = id => ({
+    type: DELETE,
+    id
+})
+
 // export default function todos(state = INITIALSTATE, action){
 //     return {...state} > 초기값 아무것도 없을때 
 // }
+
 // 리듀서
 export default function todos(state = initialState, action){
     switch(action.type){
@@ -47,18 +53,25 @@ export default function todos(state = initialState, action){
             ...state,
             input : action.input
         }
+
         case ADD_TODO :
         return {
             ...state, 
             todos: state.todos.concat(action.todo)
         }
-        // return console.log(action.todo);
         
         case TOGGLE : 
         return {
             ...state,
             todos : state.todos.map((todo) => todo.id === action.id ? { ...todo, done: !todo.done} : todo )
         }
+
+        case DELETE :
+        return {
+            ...state,
+            todos : state.todos.filter((todo) => todo.id !== action.id && todo)
+        }
+        
         default: 
         return state;
     }

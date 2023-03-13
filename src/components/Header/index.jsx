@@ -1,10 +1,10 @@
 import React from 'react';
 import * as Styled from './styled'
 
-function Header(props) {
+function Header({children}) {
     return (
         <Styled._Wrapper>
-            오늘의 할일
+            {children}
         </Styled._Wrapper>
     );
 }

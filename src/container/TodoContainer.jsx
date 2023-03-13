@@ -3,21 +3,21 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 import Header from '../components/Header/index';
 import Input from '../components/Input/index';
 import TodoItem from '../components/TodoItem/index';
-import { addTodo, changeInput, toggleTodo } from '../modules/todos';
+import { addTodo, changeInput, deleteTodo, toggleTodo } from '../modules/todos';
 
 export function TodoContainer() {
     const todos = useSelector(state => state.todos);
     const dispatch = useDispatch();
     const onToggle = id => dispatch(toggleTodo(id));
+    const onDeleteTodo = id => dispatch(deleteTodo(id))
     const onAddTodo = text => dispatch(addTodo(text));
     const onChangeInput = text => dispatch(changeInput(text));
 
-
     return (
         <>
-            <Header />
+            <Header>오늘의 할일</Header>
             <Input todos={todos} onAddTodo={onAddTodo} onChangeInput={onChangeInput} />
-            <TodoItem todos={todos} onToggle={onToggle} />
+            <TodoItem todos={todos} onToggle={onToggle} onDeleteTodo={onDeleteTodo} />
         </>
     );
 }
